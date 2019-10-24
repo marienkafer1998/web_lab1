@@ -1,0 +1,20 @@
+<h3>{{city.name}}:</h3>
+<table class=".weather-info">
+    <tr>
+        <th>Date</th>
+        <th>Sky</th>
+        <th>Temperature</th>
+        <th>Pressure</th>
+        <th>Humidity</th>
+    </tr>
+    {{#each list}}
+        <tr>
+            <td>{{convertDate this.dt}}</td>
+            <td>{{this.weather.0.main}}</td>
+            <td>{{convertTemp this.main.temp}}</td>
+            <td>{{this.main.pressure}}</td>
+            <td>{{this.main.humidity}}</td>
+        </tr>
+    {{/each}}
+
+</table>
