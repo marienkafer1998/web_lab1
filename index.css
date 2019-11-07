@@ -27,6 +27,9 @@ th {
   padding-right: 100px;
   text-align: left; }
 
+td {
+    text-align: right; }
+
 #updateButton {
   height: 30px;
   width: 100px;
