@@ -1,26 +1,36 @@
 const Handlebars = require('handlebars');
-const axios = require("axios");
-const baseURL = `http://api.openweathermap.org/data/2.5/forecast?APPID=c98ceead6e7b88c9c865eaf7bdbb291d&q=`;
-
-let template;
-axios.get('templates/weather_data.handlebars').then(
-    (response) => {
-        template = Handlebars.compile(response.data);
-    }
-);
-
+const API_KEY = 'c98ceead6e7b88c9c865eaf7bdbb291d';
+const BASE_URL=`http://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=`;
 
 async function updateWeather() {
-    const weatherData = document.getElementById('weatherData');
-    try {
-        const cityName = event.target.cityName.value;
-        const response = await axios.get(baseURL + cityName);
-        const data = response.data;
-        weatherData.innerHTML = template(data)
-    } catch (error) {
-        weatherData.innerText = '\nOops! Something is wrong!\n ' + error;
+    const cityName = event.target.cityName.value;
+    const response = await fetch(BASE_URL + cityName);
+    const data = await response.json();
+    if (data.cod == 200) {
+        showWeather(data)
+
+    } else {
+        showError(data);
     }
+
 }
+
+function showWeather(data) {
+    let source = document.getElementById("weatherTemplate").innerHTML;
+    let template = Handlebars.compile(source);
+    let html = template(data);
+    document.getElementById("weatherContainer").innerHTML = html;
+    document.getElementById("errorContainer").innerHTML = "";
+}
+
+function showError(data) {
+    let source = document.getElementById("errorTemplate").innerHTML;
+    let template = Handlebars.compile(source);
+    let html = template(data);
+    document.getElementById("errorContainer").innerHTML = html;
+    document.getElementById("weatherContainer").innerHTML = "";
+}
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const updateForm = document.getElementById('updateForm');
