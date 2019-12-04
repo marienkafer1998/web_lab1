@@ -3,7 +3,6 @@
 Для отрисовки полученных данных должен использоваться один из клиентских шаблонизаторов (например, https://proglib.io/p/templating-languages-and-engines/). Для визуального оформления страницы используется CSS препроцессор (SASS, LESS, Stylus).
 Работа делается в публичном github-репозитории. Все необходимые инструкции для локального запуска проекта должны быть описаны в README.md в корне проекта.
 
-
 ### To install dependencies execute following commands:
 * `npm install`
 * `npm install -g node-sass`

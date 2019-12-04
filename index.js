@@ -1,19 +1,28 @@
 const Handlebars = require('handlebars');
-const API_KEY = 'c98ceead6e7b88c9c865eaf7bdbb291d';
-const BASE_URL=`http://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&q=`;
+import {getWeather} from './utils'
+import "regenerator-runtime/runtime";
+
 
 async function updateWeather() {
+    try {
     const cityName = event.target.cityName.value;
-    const response = await fetch(BASE_URL + cityName);
-    const data = await response.json();
+    console.log("inside updateWeather" + cityName);
+
+    const data =  await getWeather(cityName);
+    console.log(data);
+
     if (data.cod == 200) {
         showWeather(data)
 
     } else {
         showError(data);
+    }}
+    catch (error) {
+        showError(error);
+        
     }
-
 }
+
 
 function showWeather(data) {
     let source = document.getElementById("weatherTemplate").innerHTML;
@@ -42,7 +51,3 @@ Handlebars.registerHelper('convertTemp', function (temp) {
     return new Handlebars.SafeString((temp - 273.15).toFixed(1).toString())
 });
 
-Handlebars.registerHelper('convertDate', function (dt) {
-    date = new Date(dt * 1000);
-    return new Handlebars.SafeString(date.toUTCString().slice(0, -7))
-});
