@@ -1,4 +1,5 @@
-import {describe} from "mocha";
+import { describe } from "mocha";
+import { assert } from "chai";
 import {getWeather} from "./utils"
 import "regenerator-runtime/runtime";
 
@@ -6,7 +7,7 @@ import "regenerator-runtime/runtime";
 describe('showWeather', function() {
     let weatherData;
     before(async () => {
-        weatherData = await getWeather('Moscow'); //проблемы с async, из-за этого не могу протестировать работоспособность тестов
+        weatherData = await getWeather('Moscow');
     });
 
     it('name should be Moscow', () => {
@@ -16,10 +17,10 @@ describe('showWeather', function() {
 
     it('list should contain all needed info', () => {
         assert.exists(weatherData.main.temp);
-        // assert.exists(weatherData.0.description);
-        assert.exists(weatherData.main.humiduty);
+        assert.exists(weatherData.weather[0].description);
+        assert.exists(weatherData.main.humidity);
         assert.exists(weatherData.main.pressure);
-        assert.exists(weatherData.main.description);
+        assert.exists(weatherData.wind.speed);
 
     })
 

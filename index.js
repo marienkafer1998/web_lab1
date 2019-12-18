@@ -19,7 +19,6 @@ async function updateWeather() {
     }}
     catch (error) {
         showError(error);
-        
     }
 }
 
