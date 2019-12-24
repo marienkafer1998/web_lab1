@@ -16,38 +16,39 @@
         <input id="updateButton" type="submit" value="Check!">
     </form>
 </div>
-<div id="weatherContainer"></div>
-<script id="weatherTemplate" type="text/x-handlebars-template">
-    <h3>Current weather in {{name}}: </h3>
-    <table >
-        <tr>
-            <th>Temperature</th>
-            <td>{{convertTemp this.main.temp}} &deg;C</td>
-        </tr>
-        <tr>
-            <th>Sky</th>
-            <td>{{this.weather.0.description}}</td>
+<div id="weatherContainer">
+    <script id="weatherTemplate" type="text/x-handlebars-template">
+        <h3>Current weather in {{name}}: </h3>
+        <table>
+            <tr>
+                <th>Temperature</th>
+                <td>{{convertTemp this.main.temp}} &deg;C</td>
+            </tr>
+            <tr>
+                <th>Sky</th>
+                <td>{{this.weather.0.description}}</td>
 
-        </tr>
-        <tr>
-            <th>Pressure</th>
-            <td>{{this.main.pressure}} hpa</td>
+            </tr>
+            <tr>
+                <th>Pressure</th>
+                <td>{{this.main.pressure}} hpa</td>
 
-        </tr>
-        <tr>
-            <th>Humidity</th>
-            <td>{{this.main.humidity}} %</td>
-        </tr>
-        <tr>
-            <th>Wind speed</th>
-            <td>{{this.wind.speed}} m/s</td>
-        </tr>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{this.main.humidity}} %</td>
+            </tr>
+            <tr>
+                <th>Wind speed</th>
+                <td>{{this.wind.speed}} m/s</td>
+            </tr>
 
-        </tr>
-        <tr>
-        </tr>
-    </table>
-</script>
+            </tr>
+
+        </table>
+
+    </script>
+</div>
 
 <div id="errorContainer"></div>
 <script id="errorTemplate" type="text/x-handlebars-template">

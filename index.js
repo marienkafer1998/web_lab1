@@ -1,26 +1,31 @@
 const Handlebars = require('handlebars');
-import {getWeather} from './utils'
+import {utils} from './utils'
 import "regenerator-runtime/runtime";
 
 
 async function updateWeather() {
     try {
-    const cityName = event.target.cityName.value;
-    console.log("inside updateWeather" + cityName);
+        const cityName = event.target.cityName.value;
+        console.log("inside updateWeather" + cityName);
 
-    const data =  await getWeather(cityName);
-    console.log(data);
+        const data = await utils.getWeather(cityName);
+        console.log(data);
 
-    if (data.cod == 200) {
-        showWeather(data)
+        if (data.cod == 200) {
+            showWeather(data)
+            console.log(document.getElementById("weatherContainer").innerHTML);
 
-    } else {
-        showError(data);
-    }}
+
+        } else {
+            showError(data);
+        }
+    }
     catch (error) {
         showError(error);
     }
 }
+
+
 
 
 function showWeather(data) {
@@ -28,6 +33,7 @@ function showWeather(data) {
     let template = Handlebars.compile(source);
     let html = template(data);
     document.getElementById("weatherContainer").innerHTML = html;
+    console.log(document.getElementById("weatherContainer").innerHTML);
     document.getElementById("errorContainer").innerHTML = "";
 }
 

@@ -10,11 +10,10 @@
   "author": "Maria Malkova",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.7.2",
-    "@babel/register": "^7.7.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^7.1.1",
     "handlebars": "^4.3.1",
+    "node-require": "0.0.10",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.12.0",
     "regenerator-runtime": "^0.13.3",
@@ -28,6 +27,9 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2"
+    "jsdom": "^15.2.1",
+    "mocha": "^6.2.2",
+    "mocha-jsdom": "^2.0.0",
+    "sinon": "^7.5.0"
   }
 }
