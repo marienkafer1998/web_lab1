@@ -16,7 +16,7 @@
         <input id="updateButton" type="submit" value="Check!">
     </form>
 </div>
-<div id="weatherContainer">
+<div id="weatherContainer"></div>
     <script id="weatherTemplate" type="text/x-handlebars-template">
         <h3>Current weather in {{name}}: </h3>
         <table>
@@ -43,12 +43,11 @@
                 <td>{{this.wind.speed}} m/s</td>
             </tr>
 
-            </tr>
 
         </table>
 
     </script>
-</div>
+
 
 <div id="errorContainer"></div>
 <script id="errorTemplate" type="text/x-handlebars-template">

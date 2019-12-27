@@ -3,7 +3,7 @@ import {utils} from './utils'
 import "regenerator-runtime/runtime";
 
 
-async function updateWeather() {
+ async function updateWeather(event) {
     try {
         const cityName = event.target.cityName.value;
         console.log("inside updateWeather" + cityName);
@@ -12,37 +12,15 @@ async function updateWeather() {
         console.log(data);
 
         if (data.cod == 200) {
-            showWeather(data)
-            console.log(document.getElementById("weatherContainer").innerHTML);
-
+            utils.showWeather(data);
 
         } else {
-            showError(data);
+            utils.showError(data);
         }
     }
     catch (error) {
-        showError(error);
+        utils.showError(error);
     }
-}
-
-
-
-
-function showWeather(data) {
-    let source = document.getElementById("weatherTemplate").innerHTML;
-    let template = Handlebars.compile(source);
-    let html = template(data);
-    document.getElementById("weatherContainer").innerHTML = html;
-    console.log(document.getElementById("weatherContainer").innerHTML);
-    document.getElementById("errorContainer").innerHTML = "";
-}
-
-function showError(data) {
-    let source = document.getElementById("errorTemplate").innerHTML;
-    let template = Handlebars.compile(source);
-    let html = template(data);
-    document.getElementById("errorContainer").innerHTML = html;
-    document.getElementById("weatherContainer").innerHTML = "";
 }
 
 
@@ -56,3 +34,4 @@ Handlebars.registerHelper('convertTemp', function (temp) {
     return new Handlebars.SafeString((temp - 273.15).toFixed(1).toString())
 });
 
+export const func = {updateWeather};

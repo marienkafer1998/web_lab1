@@ -6,23 +6,26 @@ const BASE_URL=`http://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&
  async function getWeather (cityName) {
 
     const response = await (await fetch(BASE_URL + cityName)).json();
-    console.log(response);
+    //console.log(response);
     return response;
 }
 
- async function updateWeather() {
-    try {
-        const cityName = event.target.cityName.value;
-        console.log("inside updateWeather" + cityName);
+ async function updateWeather(event) {
+     //console.log("inside updateWeather" );
 
-        const data = await getWeather(cityName);
-        console.log(data);
+     try {
+        const cityName = event.target.cityName.value;
+        //console.log("inside updateWeather" + cityName);
+
+        const data = await utils.getWeather(cityName);
 
         if (data.cod == 200) {
             showWeather(data)
 
         } else {
             showError(data);
+            console.log(data);
+
         }
     }
     catch (error) {
@@ -38,6 +41,21 @@ const BASE_URL=`http://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&
     document.getElementById("errorContainer").innerHTML = "";
 }
 
+function template(data) {
+    let source = document.getElementById("weatherTemplate").innerHTML;
+    let template = Handlebars.compile(source);
+    let html = template(data);
+    return html;
+}
+
+function errorTemplate(data) {
+    let source = document.getElementById("errorTemplate").innerHTML;
+    let template = Handlebars.compile(source);
+    let html = template(data);
+    return html;
+}
+
+
  function showError(data) {
     let source = document.getElementById("errorTemplate").innerHTML;
     let template = Handlebars.compile(source);
@@ -45,4 +63,4 @@ const BASE_URL=`http://api.openweathermap.org/data/2.5/weather?APPID=${API_KEY}&
     document.getElementById("errorContainer").innerHTML = html;
     document.getElementById("weatherContainer").innerHTML = "";
 }
-export const utils = {updateWeather, getWeather, showWeather, showError};
+export const utils = {updateWeather, getWeather, showWeather, showError, template, errorTemplate};
